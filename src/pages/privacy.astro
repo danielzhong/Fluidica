@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import { site } from "../config/site";
+import { withBase } from "../lib/paths";
+---
+
+<Base title="Privacy — Fluidica">
+  <article class="container legal-page">
+    <a class="text-button" href={withBase("/")}>
+      ← Back to Fluidica
+    </a>
+    <span class="eyebrow">YOUR INFORMATION</span>
+    <h1>Privacy, in plain language.</h1>
+    <p>
+      This page explains how the Fluidica website handles information when you
+      explore the site or prepare a project inquiry.
+    </p>
+    <h2>Project inquiries</h2>
+    <p>
+      The project form prepares an email draft in your own email application.
+      Your details are sent to Fluidica only if you choose to send that email.
+      You can also download your project brief as a text file on your device.
+      Form entries are not stored by this website.
+    </p>
+    <h2>What you choose to share</h2>
+    <p>
+      If you contact us, we receive the name, email address, organization, and
+      project information that you include. We use this information to respond
+      and discuss your project. Please contact us before sharing confidential
+      research or sensitive personal information.
+    </p>
+    <h2>Cookies and analytics</h2>
+    <p>
+      This website does not use advertising cookies, analytics trackers, or
+      third-party web fonts. A hosting provider may process standard technical
+      request information, such as IP addresses and access logs, to deliver and
+      secure the website.
+    </p>
+    <h2>Questions or deletion requests</h2>
+    <p>
+      To ask about information you have shared with us or request its deletion,
+      email <a href={`mailto:${site.email}`}>{site.email}</a>.
+    </p>
+  </article>
+</Base>

@@ -1,0 +1,193 @@
+---
+interface Props {
+  variant?: string;
+}
+const { variant = "mixing" } = Astro.props;
+---
+
+<svg class="chip-diagram" viewBox="0 0 600 330" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient
+      id={`flow-${variant}`}
+      x1="100"
+      y1="100"
+      x2="480"
+      y2="240"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#42b7ed" />
+      <stop offset=".52" stop-color="#547af4" />
+      <stop offset="1" stop-color="#9a74eb" />
+    </linearGradient>
+    <pattern
+      id={`grid-${variant}`}
+      width="24"
+      height="24"
+      patternUnits="userSpaceOnUse"
+    >
+      <circle cx="1" cy="1" r="1" fill="#b0bfdc" opacity=".5" />
+    </pattern>
+  </defs>
+  <rect width="600" height="330" fill={`url(#grid-${variant})`} />
+  <g class="diagram-board">
+    <rect
+      x="64"
+      y="52"
+      width="472"
+      height="235"
+      rx="24"
+      fill="#f9fbff"
+      stroke="#d5deef"
+      stroke-width="1.5"
+    />
+    <rect
+      x="74"
+      y="42"
+      width="452"
+      height="235"
+      rx="22"
+      fill="white"
+      fill-opacity=".8"
+      stroke="#d5deef"
+      stroke-width="1.5"
+    />
+    <g fill="#eaf0fa" stroke="#cad5e8">
+      <circle cx="94" cy="62" r="5" />
+      <circle cx="506" cy="62" r="5" />
+      <circle cx="94" cy="257" r="5" />
+      <circle cx="506" cy="257" r="5" />
+    </g>
+    {variant === "mixing" && (
+      <>
+        <path
+          d="M112 107h55q22 0 22 24v13q0 18 25 18h15m-117 55h55q22 0 22-24v-13q0-18 25-18h15"
+          stroke="#e4ecfa"
+          stroke-width="20"
+        />
+        <path
+          class="flow-path"
+          d="M112 107h55q22 0 22 24v13q0 18 25 18h15m-117 55h55q22 0 22-24v-13q0-18 25-18h15"
+          stroke={`url(#flow-${variant})`}
+          stroke-width="6"
+        />
+        <path
+          d="M225 162h18V110a14 14 0 0 1 28 0v105a14 14 0 0 0 28 0V110a14 14 0 0 1 28 0v105a14 14 0 0 0 28 0V110a14 14 0 0 1 28 0v52h106"
+          stroke="#e4ecfa"
+          stroke-width="20"
+          stroke-linejoin="round"
+        />
+        <path
+          class="flow-path"
+          d="M225 162h18V110a14 14 0 0 1 28 0v105a14 14 0 0 0 28 0V110a14 14 0 0 1 28 0v105a14 14 0 0 0 28 0V110a14 14 0 0 1 28 0v52h106"
+          stroke={`url(#flow-${variant})`}
+          stroke-width="6"
+          stroke-linejoin="round"
+        />
+        <g fill="#fff" stroke-width="6">
+          <circle cx="112" cy="107" r="13" stroke="#4cb4ee" />
+          <circle cx="112" cy="217" r="13" stroke="#7184ef" />
+          <circle cx="489" cy="162" r="13" stroke="#927bea" />
+        </g>
+      </>
+    )}
+    {variant === "droplets" && (
+      <>
+        <path
+          d="M112 162h190l-45-55h-55m100 55-45 55h-55m100-55h185"
+          stroke="#e4ecfa"
+          stroke-width="24"
+          stroke-linejoin="round"
+        />
+        <path
+          class="flow-path"
+          d="M112 162h185m-95-55h55l45 55-45 55h-55"
+          stroke={`url(#flow-${variant})`}
+          stroke-width="7"
+          stroke-linejoin="round"
+        />
+        {[330, 368, 406, 444, 482].map((x) => (
+          <ellipse cx={x} cy="162" rx="10" ry="7" fill="#8479ed" />
+        ))}
+        <g fill="#fff" stroke="#68a0ee" stroke-width="6">
+          <circle cx="112" cy="162" r="13" />
+          <circle cx="202" cy="107" r="13" />
+          <circle cx="202" cy="217" r="13" />
+        </g>
+      </>
+    )}
+    {variant === "cells" && (
+      <>
+        <path d="M112 162h121m134 0h120" stroke="#e4ecfa" stroke-width="24" />
+        <path
+          class="flow-path"
+          d="M112 162h121m134 0h120"
+          stroke={`url(#flow-${variant})`}
+          stroke-width="7"
+        />
+        <rect
+          x="226"
+          y="99"
+          width="148"
+          height="126"
+          rx="24"
+          fill="#eaf0ff"
+          stroke="#7b8de6"
+          stroke-width="4"
+        />
+        {[
+          [261, 134],
+          [302, 137],
+          [336, 130],
+          [268, 183],
+          [310, 182],
+          [341, 188],
+        ].map(([x, y]) => (
+          <g>
+            <circle cx={x} cy={y} r="12" fill="#c9c4fa" stroke="#9d93e6" />
+            <circle cx={x + 2} cy={y - 1} r="4" fill="#9484db" />
+          </g>
+        ))}
+        <g fill="#fff" stroke="#68a0ee" stroke-width="6">
+          <circle cx="112" cy="162" r="13" />
+          <circle cx="487" cy="162" r="13" />
+        </g>
+      </>
+    )}
+    {variant === "analysis" && (
+      <>
+        <path
+          d="M112 162h100v-52h70v104h70v-52h135"
+          stroke="#e4ecfa"
+          stroke-width="22"
+          stroke-linejoin="round"
+        />
+        <path
+          class="flow-path"
+          d="M112 162h100v-52h70v104h70v-52h135"
+          stroke={`url(#flow-${variant})`}
+          stroke-width="7"
+          stroke-linejoin="round"
+        />
+        <rect
+          x="325"
+          y="135"
+          width="54"
+          height="54"
+          rx="8"
+          fill="#eae6ff"
+          stroke="#8e80e0"
+          stroke-width="2"
+        />
+        <path
+          d="M334 163h7l5-9 7 19 6-10h11"
+          stroke="#8e80e0"
+          stroke-width="2"
+        />
+        <g fill="#fff" stroke="#68a0ee" stroke-width="6">
+          <circle cx="112" cy="162" r="13" />
+          <circle cx="487" cy="162" r="13" />
+        </g>
+      </>
+    )}
+  </g>
+</svg>

@@ -1,0 +1,44 @@
+name: Deploy Fluidica to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      SITE_URL: https://danielzhong.github.io
+      BASE_PATH: /Fluidica
+      ASTRO_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v7
+      - name: Install, validate, build, and upload the website
+        uses: withastro/action@v6
+        with:
+          node-version: 24
+          # The committed package-lock.json selects npm automatically.
+          build-cmd: npm run check && npm run build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

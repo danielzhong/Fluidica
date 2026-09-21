@@ -1,0 +1,556 @@
+---
+import { site } from "../../config/site";
+const contactEmail = site.email;
+---
+
+<dialog
+  id="project-dialog"
+  class="project-dialog"
+  data-recipient={contactEmail}
+  aria-labelledby="project-dialog-title"
+  aria-describedby="project-dialog-description"
+>
+  <button
+    class="dialog-close"
+    type="button"
+    aria-label="Close project inquiry"
+    data-project-close
+  >
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="m6 6 12 12M18 6 6 18"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+      />
+    </svg>
+  </button>
+
+  <div class="dialog-heading">
+    <span class="dialog-eyebrow">LET’S BUILD YOUR NEXT EXPERIMENT</span>
+    <h2 id="project-dialog-title">Start with an idea.</h2>
+    <p id="project-dialog-description">
+      Tell us what you’re working on. We’ll explore the design, materials, and
+      next steps together.
+    </p>
+  </div>
+
+  <form id="project-inquiry-form">
+    <div class="form-row">
+      <label>
+        Your name <span aria-hidden="true">*</span>
+        <input
+          name="name"
+          autocomplete="name"
+          placeholder="Alex Chen"
+          required
+          minlength="2"
+          maxlength="100"
+          autofocus
+        />
+      </label>
+      <label>
+        Email address <span aria-hidden="true">*</span>
+        <input
+          name="email"
+          type="email"
+          autocomplete="email"
+          placeholder="alex@yourlab.com"
+          required
+          maxlength="254"
+        />
+      </label>
+    </div>
+
+    <div class="form-row">
+      <label>
+        Organization <span class="optional">Optional</span>
+        <input
+          name="organization"
+          autocomplete="organization"
+          placeholder="Your company or lab"
+          maxlength="150"
+        />
+      </label>
+      <div>
+        <label for="project-application">Application</label>
+        <select id="project-application" name="application">
+          <option value="Exploring a new idea">Exploring a new idea</option>
+          <option value="Mixing and reaction">Mixing &amp; reaction</option>
+          <option value="Droplet generation">Droplet generation</option>
+          <option value="Cell research">Cell research</option>
+          <option value="Sample preparation">Sample preparation</option>
+          <option value="Other application">Other application</option>
+        </select>
+      </div>
+    </div>
+
+    <label>
+      What would you like to build? <span aria-hidden="true">*</span>
+      <textarea
+        name="goals"
+        rows="4"
+        placeholder="Describe your experiment, what your chip needs to do, and any design requirements or timeline."
+        required
+        minlength="10"
+        maxlength="2000"
+        aria-describedby="project-goals-hint"
+      ></textarea>
+    </label>
+    <p class="field-hint" id="project-goals-hint">
+      A few sentences are enough to get started. * Required fields.
+    </p>
+
+    <div class="form-actions">
+      <button class="inquiry-submit" type="submit">
+        Prepare email inquiry
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M5 12h14m-6-6 6 6-6 6"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+      </button>
+      <button class="brief-download" type="button" data-project-download>
+        <svg
+          width="17"
+          height="17"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M12 3v12m-4-4 4 4 4-4M5 16v4h14v-4"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+        Download brief
+      </button>
+    </div>
+
+    <p class="submission-note">
+      Opens your email app with a draft. You review and send it; nothing is
+      submitted automatically.
+    </p>
+    <div class="inquiry-status" role="status" aria-live="polite" hidden></div>
+  </form>
+
+  <div class="dialog-contact">
+    Prefer to write directly?{" "}
+    <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+  </div>
+</dialog>
+
+<noscript>
+  <p class="no-script-contact">
+    Ready to discuss your chip?{" "}
+    <a href={`mailto:${contactEmail}?subject=Fluidica%20project%20inquiry`}>
+      Email your project details to {contactEmail}
+    </a>
+    .
+  </p>
+</noscript>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#project-dialog");
+  const form = document.querySelector<HTMLFormElement>("#project-inquiry-form");
+
+  if (dialog && form) {
+    const status = dialog.querySelector<HTMLDivElement>(".inquiry-status");
+    const recipient = dialog.dataset.recipient || "";
+
+    document.addEventListener("click", (event) => {
+      const target = event.target;
+      if (
+        target instanceof Element &&
+        target.closest("[data-project-trigger]")
+      ) {
+        event.preventDefault();
+        if (!dialog.open) dialog.showModal();
+      }
+    });
+
+    dialog
+      .querySelector("[data-project-close]")
+      ?.addEventListener("click", () => dialog.close());
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target !== dialog) return;
+      const bounds = dialog.getBoundingClientRect();
+      if (
+        event.clientX < bounds.left ||
+        event.clientX > bounds.right ||
+        event.clientY < bounds.top ||
+        event.clientY > bounds.bottom
+      )
+        dialog.close();
+    });
+
+    const getBrief = () => {
+      const fields = new FormData(form);
+      const field = (name: string) => String(fields.get(name) ?? "").trim();
+      return {
+        subject: `Fluidica project inquiry — ${field("name")}`,
+        body: [
+          "FLUIDICA — PROJECT BRIEF",
+          "AI-designed microfluidics, manufactured on demand",
+          "",
+          `Name: ${field("name")}`,
+          `Email: ${field("email")}`,
+          `Organization: ${field("organization") || "Not specified"}`,
+          `Application: ${field("application")}`,
+          "",
+          "PROJECT GOALS",
+          field("goals"),
+          "",
+          `Contact: ${recipient}`,
+        ].join("\n"),
+      };
+    };
+
+    const setStatus = (message: string) => {
+      if (!status) return;
+      status.textContent = message;
+      status.hidden = false;
+    };
+
+    const validateBrief = () => {
+      const name = form.elements.namedItem("name") as HTMLInputElement;
+      const goals = form.elements.namedItem("goals") as HTMLTextAreaElement;
+      name.setCustomValidity(
+        name.value.trim().length < 2
+          ? "Please enter your name (at least 2 characters)."
+          : "",
+      );
+      goals.setCustomValidity(
+        goals.value.trim().length < 10
+          ? "Please describe your project in at least 10 characters."
+          : "",
+      );
+      return form.reportValidity();
+    };
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!validateBrief()) return;
+      const brief = getBrief();
+      setStatus(
+        `Your email draft is ready. Send it from your email app to complete your inquiry. If no email app opens, download your brief and send it to ${recipient}.`,
+      );
+      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(brief.subject)}&body=${encodeURIComponent(brief.body)}`;
+    });
+
+    dialog
+      .querySelector("[data-project-download]")
+      ?.addEventListener("click", () => {
+        if (!validateBrief()) return;
+        const brief = getBrief();
+        const file = new Blob([brief.body], {
+          type: "text/plain;charset=utf-8",
+        });
+        const url = URL.createObjectURL(file);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "fluidica-project-brief.txt";
+        document.body.append(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        setStatus(
+          `Your brief is ready to download. Email the file to ${recipient} when you’re ready to discuss your project.`,
+        );
+      });
+
+    form.addEventListener("input", (event) => {
+      if (
+        event.target instanceof HTMLInputElement ||
+        event.target instanceof HTMLTextAreaElement
+      ) {
+        event.target.setCustomValidity("");
+      }
+      if (status) status.hidden = true;
+    });
+  }
+</script>
+
+<style>
+  .project-dialog {
+    box-sizing: border-box;
+    width: min(660px, calc(100% - 32px));
+    max-height: min(92dvh, 940px);
+    margin: auto;
+    padding: 42px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    color: #152139;
+    background: #fff;
+    border: 1px solid #e2e7f0;
+    border-radius: 24px;
+    box-shadow: 0 32px 100px #10244730;
+    font-family: inherit;
+  }
+  .project-dialog::backdrop {
+    background: #101e3a66;
+    backdrop-filter: blur(7px);
+  }
+  :global(body:has(#project-dialog[open])) {
+    overflow: hidden;
+  }
+  .dialog-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 0;
+    border-radius: 50%;
+    color: #52617a;
+    background: #f3f5f9;
+    cursor: pointer;
+  }
+  .dialog-close:hover {
+    color: #172743;
+    background: #e8edf6;
+  }
+  .dialog-eyebrow {
+    color: #606bc7;
+    font-size: 10px;
+    font-weight: 650;
+    letter-spacing: 0.13em;
+  }
+  .dialog-heading h2 {
+    margin: 12px 0;
+    color: #152139;
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: 550;
+    letter-spacing: -0.045em;
+    line-height: 1.15;
+  }
+  .dialog-heading p {
+    max-width: 480px;
+    margin: 0 0 28px;
+    color: #647089;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    color: #26354f;
+    font-size: 12px;
+    font-weight: 550;
+  }
+  label > span:not(.optional) {
+    color: #606bc7;
+  }
+  .optional {
+    margin-left: 5px;
+    color: #647089;
+    font-size: 10px;
+    font-weight: 400;
+  }
+  input,
+  select,
+  textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 11px 13px;
+    border: 1px solid #dce2ec;
+    border-radius: 8px;
+    color: #24324c;
+    background: #fbfcfe;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.5;
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  select {
+    min-height: 44px;
+    padding-right: 24px;
+  }
+  textarea {
+    min-height: 116px;
+    resize: vertical;
+  }
+  input::placeholder,
+  textarea::placeholder {
+    color: #647089;
+    opacity: 1;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: #808ade;
+    box-shadow: 0 0 0 3px #7c87db14;
+  }
+  .field-hint {
+    margin: 8px 0 22px;
+    color: #647089;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .form-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .inquiry-submit,
+  .brief-download {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 44px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 550;
+    cursor: pointer;
+  }
+  .inquiry-submit {
+    padding: 12px 18px;
+    border: 1px solid #172743;
+    border-radius: 8px;
+    color: #fff;
+    background: #172743;
+    transition:
+      background 0.2s,
+      transform 0.2s;
+  }
+  .inquiry-submit:hover {
+    background: #2c4063;
+    transform: translateY(-1px);
+  }
+  .brief-download {
+    padding: 8px 0;
+    border: 0;
+    color: #53617a;
+    background: transparent;
+  }
+  .brief-download:hover {
+    color: #4d5cc0;
+  }
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #7985db;
+    outline-offset: 4px;
+  }
+  .submission-note {
+    margin: 13px 0 0;
+    color: #647089;
+    font-size: 11px;
+    line-height: 1.6;
+  }
+  .inquiry-status {
+    margin-top: 20px;
+    padding: 14px 16px;
+    border: 1px solid #dce4f1;
+    border-radius: 8px;
+    color: #3f5879;
+    background: #f3f7fd;
+    font-size: 12px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+  }
+  .inquiry-status[hidden] {
+    display: none;
+  }
+  .dialog-contact {
+    margin-top: 26px;
+    padding-top: 20px;
+    border-top: 1px solid #ecedf3;
+    color: #647089;
+    font-size: 11px;
+    line-height: 1.8;
+  }
+  .dialog-contact a,
+  noscript a {
+    color: #5964ba;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  .dialog-contact a:hover,
+  noscript a:hover {
+    text-decoration: underline;
+  }
+  .no-script-contact {
+    padding: 16px 24px;
+    color: #53617a;
+    background: #f3f7fd;
+    font-size: 13px;
+    text-align: center;
+  }
+  @media (max-width: 540px) {
+    .project-dialog {
+      padding: 36px 24px 26px;
+      border-radius: 18px;
+    }
+    .dialog-eyebrow {
+      display: block;
+      max-width: 230px;
+      font-size: 9px;
+      line-height: 1.7;
+    }
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+    .form-actions {
+      gap: 8px;
+    }
+    .inquiry-submit {
+      width: 100%;
+    }
+    .brief-download {
+      width: 100%;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    input,
+    select,
+    textarea,
+    .inquiry-submit {
+      transition: none;
+    }
+    .inquiry-submit:hover {
+      transform: none;
+    }
+  }
+</style>

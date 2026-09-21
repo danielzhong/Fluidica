@@ -1,0 +1,343 @@
+---
+import Base from "../layouts/Base.astro";
+import Badge from "../layouts/components/Badge.astro";
+import Icon from "../layouts/components/Icon.astro";
+import ValueCard from "../layouts/components/ValueCard.astro";
+import ProcessCard from "../layouts/components/ProcessCard.astro";
+import ChipDiagram from "../layouts/components/ChipDiagram.astro";
+import Faq from "../layouts/components/Faq.astro";
+import LabGallery from "../layouts/components/LabGallery.astro";
+import { withBase } from "../lib/paths";
+import { benefits, steps, applications } from "../content/homepage/content";
+---
+
+<Base>
+  <section class="hero">
+    <div class="hero-halo" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <Badge title="3D printing. Lower prices. More possibilities." />
+      <h1>
+        Your next big idea.
+        <br />
+        <span>On a very small chip.</span>
+      </h1>
+      <p class="hero-tagline">
+        AI-designed microfluidics, manufactured on demand.
+      </p>
+      <p class="hero-description">
+        Custom chips that cost <strong>at least 50% less</strong> than regular
+        off-the-shelf microfluidic chips.
+        <br class="desktop-break" /> Made affordable by 3D printing. Designed
+        around your experiment.
+      </p>
+      <div class="hero-actions">
+        <button class="button button-primary" data-project-trigger>
+          Start your project <Icon name="arrow" size={19} />
+        </button>
+        <a class="button button-outline" href="#process">
+          See how it works <span class="play-icon">▶</span>
+        </a>
+      </div>
+      <div class="hero-footnote">
+        <span></span> Your idea. Your geometry. Your next discovery.
+      </div>
+    </div>
+    <div class="container hero-image-container">
+      <figure class="hero-image-frame">
+        <div class="image-topline">
+          <span>
+            <i></i> ENGINEERED FOR POSSIBILITY
+          </span>
+          <span>
+            FLUIDICA / CUSTOM MICROFLUIDICS <Icon name="diagonal" size={13} />
+          </span>
+        </div>
+        <img
+          class="hero-image"
+          src={withBase("/images/fluidica-chip.png")}
+          width="1672"
+          height="941"
+          alt="Transparent microfluidic chip with flowing blue and violet channels, surrounded by AI-inspired flow patterns"
+          fetchpriority="high"
+          decoding="async"
+        />
+        <figcaption class="image-caption">
+          <div>
+            <span class="caption-icon">
+              <Icon name="layers" size={22} />
+            </span>
+            <div>
+              <strong>Small channels. Big possibilities.</strong>
+              <span>From a new idea to a chip in your hands.</span>
+            </div>
+          </div>
+          <span class="concept-label">CONCEPT VISUALIZATION</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+  <div class="research-strip container">
+    <span>
+      BUILT AROUND
+      <br />
+      <strong>THE WAY YOU RESEARCH</strong>
+    </span>
+    <div>
+      <Icon name="spark" size={21} /> AI-assisted design
+    </div>
+    <div>
+      <Icon name="chip" size={21} /> Custom chip geometries
+    </div>
+    <div>
+      <Icon name="layers" size={21} /> On-demand 3D printing
+    </div>
+    <div>
+      <Icon name="sliders" size={21} /> Room to iterate
+    </div>
+  </div>
+  <section class="section technology-section" id="technology">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">PURPOSE-BUILT, AT THE MICROSCALE</span>
+          <h2>
+            Your research isn’t off the shelf.
+            <br />
+            <span>Why should your chip be?</span>
+          </h2>
+        </div>
+        <p>
+          Custom microfluidics should fit your research and your budget. Our 3D
+          printing approach brings chip prices down by at least 50% compared
+          with regular off-the-shelf options.
+        </p>
+      </div>
+      <div class="value-grid">
+        {benefits.map((benefit) => (
+          <ValueCard {...benefit} />
+        ))}
+      </div>
+    </div>
+  </section>
+  <LabGallery />
+  <section class="section process-section" id="process">
+    <div class="container">
+      <div class="center-heading">
+        <span class="eyebrow">FROM WHAT IF TO WHAT’S NEXT</span>
+        <h2>
+          One idea. Three steps.
+          <br />
+          <span>A whole new flow.</span>
+        </h2>
+        <p>
+          A collaborative path from your first sketch
+          <br class="desktop-break" /> to your next experiment.
+        </p>
+      </div>
+      <div class="process-grid">
+        {steps.map((step) => (
+          <ProcessCard {...step} />
+        ))}
+      </div>
+      <div class="process-bottom">
+        <span>
+          <Icon name="check" size={17} /> No finished CAD file needed to start.
+        </span>
+        <button class="text-button" data-project-trigger>
+          Let’s explore your idea <Icon name="arrow" size={20} />
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="section applications-section" id="applications">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <span class="eyebrow">A PLATFORM FOR POSSIBILITY</span>
+          <h2>
+            Different questions.
+            <br />
+            <span>Endless directions.</span>
+          </h2>
+        </div>
+        <p>
+          From bringing fluids together to seeing what’s inside them. Explore a
+          chip designed around your field of discovery.
+        </p>
+      </div>
+      <div class="application-layout">
+        <div
+          class="application-tabs"
+          role="tablist"
+          aria-label="Microfluidic applications"
+          aria-orientation="vertical"
+        >
+          {applications.map((app, index) => (
+            <button
+              id={`tab-${app.id}`}
+              class:list={["application-tab", { active: index === 0 }]}
+              role="tab"
+              aria-selected={index === 0 ? "true" : "false"}
+              aria-controls={`panel-${app.id}`}
+              tabindex={index === 0 ? 0 : -1}
+            >
+              <span class="app-tab-icon">
+                <Icon name={app.icon} size={23} />
+              </span>
+              <span>
+                <strong>{app.title}</strong>
+                <small>{app.short}</small>
+              </span>
+              <Icon name="diagonal" size={18} />
+            </button>
+          ))}
+        </div>
+        <div class="application-panels">
+          {applications.map((app, index) => (
+            <div
+              class="application-panel"
+              id={`panel-${app.id}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${app.id}`}
+              tabindex="0"
+              hidden={index !== 0}
+            >
+              <div class="diagram-header">
+                <span>{app.label}</span>
+                <span>DESIGN EXPLORATION / {app.number}</span>
+              </div>
+              <ChipDiagram variant={app.diagram} />
+              <div class="application-copy">
+                <h3>{app.caption}</h3>
+                <p>{app.text}</p>
+                <div class="application-tags">
+                  {app.tags.map((tag) => (
+                    <span>{tag}</span>
+                  ))}
+                </div>
+              </div>
+              <span class="diagram-disclaimer">
+                Illustrative geometry. Feasibility is reviewed for each project.
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="mission-section">
+    <div class="container mission-inner">
+      <span class="eyebrow">THE FLUIDICA PHILOSOPHY</span>
+      <p>
+        Spend more time on the science.
+        <br />
+        <span>We’ll help shape what it flows through.</span>
+      </p>
+      <div class="mission-line">
+        <span></span>
+        <Icon name="drop" size={26} />
+        <span></span>
+      </div>
+      <span class="mission-note">
+        DESIGNED WITH INTENT. MADE FOR DISCOVERY.
+      </span>
+    </div>
+  </section>
+  <Faq />
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-card">
+        <div class="cta-orbits" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="cta-copy">
+          <span class="eyebrow">LET’S BUILD WHAT’S NEXT</span>
+          <h2>
+            What will you
+            <br />
+            <span>make flow?</span>
+          </h2>
+          <p>
+            A new experiment starts with a conversation.
+            <br />
+            Bring your idea. We’ll explore the chip it needs.
+          </p>
+          <button class="button button-white" data-project-trigger>
+            Start your project <Icon name="arrow" size={20} />
+          </button>
+        </div>
+        <div class="cta-chip" aria-hidden="true">
+          <svg viewBox="0 0 360 250" fill="none">
+            <rect
+              x="20"
+              y="20"
+              width="320"
+              height="210"
+              rx="30"
+              stroke="white"
+              stroke-opacity=".3"
+            />
+            <rect
+              x="32"
+              y="32"
+              width="296"
+              height="186"
+              rx="24"
+              stroke="white"
+              stroke-opacity=".2"
+            />
+            <path
+              d="M66 79h58q20 0 20 22v24q0 20 20 20h19m-117 38h58q20 0 20-22v-16m40 0V82a13 13 0 0 1 26 0v84a13 13 0 0 0 26 0V82a13 13 0 0 1 26 0v63h32"
+              stroke="#bed8ff"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+            {[
+              [66, 79],
+              [66, 183],
+              [294, 145],
+            ].map(([x, y]) => (
+              <circle cx={x} cy={y} r="13" stroke="white" stroke-width="4" />
+            ))}
+          </svg>
+          <span>IDEA → DESIGN → DISCOVERY</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+<script>
+  const tabs = Array.from(
+    document.querySelectorAll<HTMLButtonElement>('[role="tab"]'),
+  );
+  function activateTab(tab: HTMLButtonElement, focus = false) {
+    tabs.forEach((item) => {
+      const selected = item === tab;
+      item.setAttribute("aria-selected", String(selected));
+      item.tabIndex = selected ? 0 : -1;
+      item.classList.toggle("active", selected);
+      const panel = document.getElementById(
+        item.getAttribute("aria-controls") || "",
+      );
+      if (panel) panel.hidden = !selected;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activateTab(tab));
+    tab.addEventListener("keydown", (event) => {
+      let next = index;
+      if (event.key === "ArrowDown" || event.key === "ArrowRight")
+        next = (index + 1) % tabs.length;
+      else if (event.key === "ArrowUp" || event.key === "ArrowLeft")
+        next = (index - 1 + tabs.length) % tabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      activateTab(tabs[next], true);
+    });
+  });
+</script>

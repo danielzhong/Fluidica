@@ -1,0 +1,79 @@
+---
+import Logo from "../components/Logo.astro";
+import Icon from "../components/Icon.astro";
+import { withBase } from "../../lib/paths";
+const links = [
+  { label: "Technology", href: withBase("/#technology") },
+  { label: "How it works", href: withBase("/#process") },
+  { label: "Applications", href: withBase("/#applications") },
+  { label: "Our lab", href: withBase("/#lab") },
+];
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <Logo />
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {links.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </nav>
+    <button
+      class="button button-small button-dark header-cta"
+      data-project-trigger
+    >
+      Start a project <Icon name="diagonal" size={17} />
+    </button>
+    <button
+      class="menu-toggle"
+      aria-label="Open navigation"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+    >
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    {links.map((link) => (
+      <a href={link.href}>{link.label}</a>
+    ))}
+    <button class="button button-primary" data-project-trigger>
+      Start a project <Icon name="arrow" size={18} />
+    </button>
+  </nav>
+</header>
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
+  const navigation = document.querySelector<HTMLElement>("#mobile-nav");
+  const close = () => {
+    toggle?.setAttribute("aria-expanded", "false");
+    toggle?.setAttribute("aria-label", "Open navigation");
+    if (navigation) navigation.hidden = true;
+  };
+  toggle?.addEventListener("click", () => {
+    const open = toggle.getAttribute("aria-expanded") !== "true";
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute(
+      "aria-label",
+      open ? "Close navigation" : "Open navigation",
+    );
+    if (navigation) navigation.hidden = !open;
+  });
+  navigation?.querySelectorAll("a, button").forEach((link) =>
+    link.addEventListener("click", () => {
+      if (link.hasAttribute("data-project-trigger")) toggle?.focus();
+      close();
+    }),
+  );
+  document.addEventListener("keydown", (event) => {
+    if (
+      event.key === "Escape" &&
+      toggle?.getAttribute("aria-expanded") === "true"
+    ) {
+      toggle.focus();
+      close();
+    }
+  });
+  window.matchMedia("(min-width: 900px)").addEventListener("change", close);
+</script>

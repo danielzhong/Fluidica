@@ -1,0 +1,22 @@
+---
+// Adapted from Automark's ProcessCard component.
+import Icon from "./Icon.astro";
+interface Props {
+  number: string;
+  icon: string;
+  title: string;
+  text: string;
+  note: string;
+}
+const { number, icon, title, text, note } = Astro.props;
+---
+
+<article class="process-card">
+  <div class="step-top">
+    <span>{number}</span>
+    <Icon name={icon} size={25} />
+  </div>
+  <h3>{title}</h3>
+  <p>{text}</p>
+  <span class="step-note">{note}</span>
+</article>

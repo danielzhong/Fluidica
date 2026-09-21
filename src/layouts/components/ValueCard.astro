@@ -1,0 +1,83 @@
+---
+// Adapted from Automark's ValueCard component for Fluidica.
+import Icon from "./Icon.astro";
+interface Props {
+  icon: string;
+  tag: string;
+  title: string;
+  text: string;
+  detail: string;
+  visual: string;
+}
+const { icon, tag, title, text, detail, visual } = Astro.props;
+---
+
+<article class="value-card">
+  <div class:list={["value-visual", `visual-${visual}`]} aria-hidden="true">
+    {visual === "design" && (
+      <div class="design-window">
+        <div class="mini-window-bar">
+          <span></span>
+          <span></span>
+          <span></span>
+          <b>design exploration</b>
+        </div>
+        <div class="design-paths">
+          <svg viewBox="0 0 250 100" fill="none">
+            <path
+              d="M0 20h48q16 0 16 18v10q0 16 20 16h20m-104 20h48q16 0 16-18V56q0-16 20-16h20M104 40h20V15h25v70h25V15h25v49h51"
+              stroke="#c8d5f9"
+              stroke-width="12"
+            />
+            <path
+              d="M0 20h48q16 0 16 18v10q0 16 20 16h20m-104 20h48q16 0 16-18V56q0-16 20-16h20M104 40h20V15h25v70h25V15h25v49h51"
+              stroke="#5f81e9"
+              stroke-width="3"
+            />
+          </svg>
+        </div>
+        <span class="mini-status">
+          <i></i> Shaped by your requirements
+        </span>
+      </div>
+    )}
+    {visual === "layers" && (
+      <div class="layer-stack">
+        <div class="chip-layer layer-one">
+          <span></span>
+        </div>
+        <div class="chip-layer layer-two">
+          <span></span>
+        </div>
+        <div class="chip-layer layer-three">
+          <span></span>
+        </div>
+        <span class="layer-label">A new dimension of possibility</span>
+      </div>
+    )}
+    {visual === "iteration" && (
+      <div class="iteration-visual">
+        <span class="iteration-v v1">
+          v.01 <Icon name="chip" size={36} />
+        </span>
+        <span class="iteration-arrow">↗</span>
+        <span class="iteration-v v2">
+          v.02 <Icon name="chip" size={42} />
+          <i>
+            <Icon name="check" size={12} />
+          </i>
+        </span>
+        <span class="iteration-note">Design. Test. Evolve.</span>
+      </div>
+    )}
+  </div>
+  <div class="value-card-copy">
+    <span class="micro-label">{tag}</span>
+    <h3>{title}</h3>
+    <p>{text}</p>
+    <div class="value-detail">
+      <Icon name={icon} size={17} />
+      <span>{detail}</span>
+    </div>
+  </div>
+</article>

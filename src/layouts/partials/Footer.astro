@@ -1,0 +1,41 @@
+---
+import Logo from "../components/Logo.astro";
+import Icon from "../components/Icon.astro";
+import { site } from "../../config/site";
+import { withBase } from "../../lib/paths";
+---
+
+<footer class="site-footer">
+  <div class="container footer-main">
+    <div>
+      <Logo />
+      <p>
+        AI-designed microfluidics,
+        <br />
+        manufactured on demand.
+      </p>
+    </div>
+    <div class="footer-links">
+      <span class="footer-label">EXPLORE</span>
+      <a href={withBase("/#technology")}>Our technology</a>
+      <a href={withBase("/#process")}>How it works</a>
+      <a href={withBase("/#applications")}>Applications</a>
+      <a href={withBase("/#lab")}>Our lab</a>
+      <a href={withBase("/#faq")}>FAQs</a>
+    </div>
+    <div class="footer-links">
+      <span class="footer-label">LET’S MAKE IT FLOW</span>
+      <a href={`mailto:${site.email}`}>
+        {site.email} <Icon name="diagonal" size={16} />
+      </a>
+      <button class="text-button" data-project-trigger>
+        Tell us about your project <Icon name="arrow" size={16} />
+      </button>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© {new Date().getFullYear()} Fluidica. All rights reserved.</span>
+    <span>Small channels. Big possibilities.</span>
+    <a href={withBase("/privacy/")}>Privacy</a>
+  </div>
+</footer>

@@ -1,0 +1,36 @@
+---
+import { withBase } from "../../lib/paths";
+interface Props {
+  light?: boolean;
+}
+const { light = false } = Astro.props;
+---
+
+<a
+  href={withBase("/")}
+  class:list={["brand", { "brand-light": light }]}
+  aria-label="Fluidica home"
+>
+  <svg
+    width="34"
+    height="38"
+    viewBox="0 0 34 38"
+    fill="none"
+    aria-hidden="true"
+  >
+    <path
+      d="M17 3C13 9 4 18 4 25a13 13 0 0 0 26 0c0-7-9-16-13-22Z"
+      stroke="currentColor"
+      stroke-width="2.2"
+    />
+    <path
+      d="M9 25c4-8 12-8 16-1M12 29c3-5 7-5 10-1"
+      stroke="currentColor"
+      stroke-width="2.2"
+      stroke-linecap="round"
+    />
+  </svg>
+  <span>
+    fluidica<span class="brand-period">.</span>
+  </span>
+</a>

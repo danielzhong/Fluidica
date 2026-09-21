@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import { withBase } from "../lib/paths";
+---
+
+<Base title="Page not found — Fluidica">
+  <section class="container not-found">
+    <span class="eyebrow">404 / A SMALL DETOUR</span>
+    <h1>
+      Let’s get back
+      <br />
+      into the flow.
+    </h1>
+    <p>We couldn’t find this page. Your next idea is still waiting.</p>
+    <a class="button button-primary" href={withBase("/")}>
+      Back to Fluidica →
+    </a>
+  </section>
+</Base>
