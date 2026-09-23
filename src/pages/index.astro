@@ -8,6 +8,7 @@ import ChipDiagram from "../layouts/components/ChipDiagram.astro";
 import Faq from "../layouts/components/Faq.astro";
 import LabGallery from "../layouts/components/LabGallery.astro";
 import { withBase } from "../lib/paths";
+import { site } from "../config/site";
 import { benefits, steps, applications } from "../content/homepage/content";
 ---
 
@@ -49,7 +50,8 @@ import { benefits, steps, applications } from "../content/homepage/content";
             <i></i> ENGINEERED FOR POSSIBILITY
           </span>
           <span>
-            FLUIDICA / CUSTOM MICROFLUIDICS <Icon name="diagonal" size={13} />
+            {site.name} / CUSTOM MICROFLUIDICS{" "}
+            <Icon name="diagonal" size={13} />
           </span>
         </div>
         <img
@@ -227,7 +229,7 @@ import { benefits, steps, applications } from "../content/homepage/content";
   </section>
   <section class="mission-section">
     <div class="container mission-inner">
-      <span class="eyebrow">THE FLUIDICA PHILOSOPHY</span>
+      <span class="eyebrow">THE {site.name} PHILOSOPHY</span>
       <p>
         Spend more time on the science.
         <br />

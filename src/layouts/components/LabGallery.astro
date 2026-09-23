@@ -2,6 +2,7 @@
 import Icon from "./Icon.astro";
 import { labPhotos } from "../../content/homepage/lab";
 import { withBase } from "../../lib/paths";
+import { site } from "../../config/site";
 ---
 
 <section class="section lab-section" id="lab" aria-labelledby="lab-heading">
@@ -25,13 +26,16 @@ import { withBase } from "../../lib/paths";
           3D-printing and using our own.
         </p>
         <p>
-          Fluidica grew from that hands-on experience—with a simple goal: make
-          custom microfluidics more practical, affordable, and accessible.
+          {site.name} grew from that hands-on experience—with a simple goal:
+          make custom microfluidics more practical, affordable, and accessible.
         </p>
       </div>
     </div>
 
-    <div class="lab-gallery" aria-label="Photographs from the Fluidica lab">
+    <div
+      class="lab-gallery"
+      aria-label={`Photographs from the ${site.name} lab`}
+    >
       {labPhotos.map((photo, index) => (
         <figure class:list={["lab-photo", `lab-photo-${photo.layout}`]}>
           <a
@@ -54,7 +58,7 @@ import { withBase } from "../../lib/paths";
               <Icon name="diagonal" size={17} />
             </span>
             {photo.layout === "feature" && (
-              <span class="photo-label">ON THE BENCH / FLUIDICA LAB</span>
+              <span class="photo-label">ON THE BENCH / {site.name} LAB</span>
             )}
           </a>
           <figcaption>

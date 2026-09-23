@@ -1,5 +1,5 @@
 export const site = {
-  name: "Fluidica",
+  name: "Fluid Fabs",
   tagline: "AI-designed microfluidics, manufactured on demand",
   email: "danielzhong2000@gmail.com",
   description:

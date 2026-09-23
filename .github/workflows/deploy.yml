@@ -1,4 +1,4 @@
-name: Deploy Fluidica to GitHub Pages
+name: Deploy Fluid Fabs to GitHub Pages
 
 on:
   push:

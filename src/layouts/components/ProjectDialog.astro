@@ -162,7 +162,9 @@ const contactEmail = site.email;
 <noscript>
   <p class="no-script-contact">
     Ready to discuss your chip?{" "}
-    <a href={`mailto:${contactEmail}?subject=Fluidica%20project%20inquiry`}>
+    <a
+      href={`mailto:${contactEmail}?subject=${encodeURIComponent(`${site.name} project inquiry`)}`}
+    >
       Email your project details to {contactEmail}
     </a>
     .
@@ -170,6 +172,8 @@ const contactEmail = site.email;
 </noscript>
 
 <script>
+  import { site } from "../../config/site";
+
   const dialog = document.querySelector<HTMLDialogElement>("#project-dialog");
   const form = document.querySelector<HTMLFormElement>("#project-inquiry-form");
 
@@ -208,9 +212,9 @@ const contactEmail = site.email;
       const fields = new FormData(form);
       const field = (name: string) => String(fields.get(name) ?? "").trim();
       return {
-        subject: `Fluidica project inquiry — ${field("name")}`,
+        subject: `${site.name} project inquiry — ${field("name")}`,
         body: [
-          "FLUIDICA — PROJECT BRIEF",
+          `${site.name} — PROJECT BRIEF`,
           "AI-designed microfluidics, manufactured on demand",
           "",
           `Name: ${field("name")}`,
@@ -269,7 +273,7 @@ const contactEmail = site.email;
         const url = URL.createObjectURL(file);
         const link = document.createElement("a");
         link.href = url;
-        link.download = "fluidica-project-brief.txt";
+        link.download = "fluid-fabs-project-brief.txt";
         document.body.append(link);
         link.click();
         link.remove();

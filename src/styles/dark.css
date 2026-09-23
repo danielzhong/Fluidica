@@ -1,0 +1,727 @@
+/* Fluid Fabs after dark. Keep photography and scientific image pixels intact. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ink: #edf3ff;
+  --muted: #a8b6cc;
+  --blue: #9cb5ff;
+  --line: #293950;
+  --paper: #0b1220;
+  --surface: #101a2c;
+  --surface-raised: #152238;
+  --surface-soft: #111c30;
+  --color-primary: #9cb5ff;
+  --color-primary-light: #192b4c;
+  --color-secondary: #b9a8ff;
+  --color-body: #0b1220;
+  --color-border: #293950;
+  --color-light: #152238;
+  --color-dark: #edf3ff;
+  --color-text: #a8b6cc;
+  --color-text-dark: #edf3ff;
+  --color-text-light: #a8b6cc;
+}
+
+:root[data-theme="dark"] body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] ::selection {
+  background: #385896;
+  color: #fff;
+}
+
+:root[data-theme="dark"] :focus-visible {
+  outline-color: #aec3ff;
+}
+
+:root[data-theme="dark"] :is(.eyebrow, .micro-label) {
+  color: #a8b9db;
+}
+
+:root[data-theme="dark"] h2 > span {
+  color: #a6b6d4;
+}
+
+:root[data-theme="dark"] .button-primary {
+  background: #4864df;
+  color: #fff;
+  border-color: #7891ff55;
+  box-shadow:
+    0 5px 22px #355bea26,
+    inset 0 1px 0 #ffffff1f;
+}
+
+:root[data-theme="dark"] .button-primary:hover {
+  background: #3e56c8;
+  box-shadow: 0 8px 28px #355bea40;
+}
+
+:root[data-theme="dark"] .button-dark {
+  background: #e8eeff;
+  color: #15233f;
+  border-color: #fff;
+}
+
+:root[data-theme="dark"] .button-dark:hover {
+  background: #cfdcff;
+  border-color: #cfdcff;
+}
+
+:root[data-theme="dark"] .button-outline {
+  background: #152138;
+  color: #dce7ff;
+  border-color: #425675;
+  box-shadow: inset 0 1px 0 #ffffff05;
+}
+
+:root[data-theme="dark"] .button-outline:hover {
+  background: #1c2c47;
+  border-color: #7791bd;
+}
+
+:root[data-theme="dark"] .button-white {
+  color: #233c98;
+  background: #f1f5ff;
+}
+
+:root[data-theme="dark"] .button-white:hover {
+  background: #dce6ff;
+}
+
+:root[data-theme="dark"] .text-button {
+  color: var(--blue);
+}
+
+:root[data-theme="dark"] .text-button:hover {
+  color: #cad8ff;
+}
+
+:root[data-theme="dark"] .skip-link {
+  background: var(--surface-raised);
+  color: var(--ink);
+  border-color: var(--blue);
+}
+
+/* Navigation and the illuminated opening section. */
+:root[data-theme="dark"] .site-header {
+  background: #0b1220eb;
+  border-color: #9bb7ff14;
+}
+
+:root[data-theme="dark"] .brand {
+  color: #e8f0ff;
+}
+
+:root[data-theme="dark"] :is(.brand > svg, .brand-period) {
+  color: #95b3ff;
+}
+
+:root[data-theme="dark"] .desktop-nav a {
+  color: #bac7dc;
+}
+
+:root[data-theme="dark"] :is(.desktop-nav a:hover, .mobile-nav a:hover) {
+  color: #d3dfff;
+}
+
+:root[data-theme="dark"] .mobile-nav {
+  background: #101a2c;
+  color: #dbe6fc;
+  border-color: var(--line);
+  box-shadow: 0 20px 40px #02050d66;
+}
+
+:root[data-theme="dark"] .hero-halo {
+  background:
+    radial-gradient(ellipse at 19% 42%, #17436b44, transparent 43%),
+    radial-gradient(ellipse at 79% 33%, #4c388844, transparent 42%),
+    radial-gradient(ellipse at 48% 75%, #263d803d, transparent 54%);
+}
+
+:root[data-theme="dark"] .hero .badge {
+  background: #15203acc;
+  color: #c8d4ed;
+  border-color: #374c73;
+  box-shadow: inset 0 1px 0 #ffffff06;
+}
+
+:root[data-theme="dark"] .badge-stars {
+  color: #a9b7ff;
+}
+
+:root[data-theme="dark"] .hero h1 > span {
+  background: linear-gradient(105deg, #8ac9ff 10%, #b3b7ff 66%, #d0b7ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+:root[data-theme="dark"] .hero-tagline {
+  color: #d0dcf2;
+}
+
+:root[data-theme="dark"] :is(.hero-description, .hero-footnote) {
+  color: #aabbd5;
+}
+
+:root[data-theme="dark"] .hero-footnote > span {
+  background: #9ab5fa;
+  box-shadow: 0 0 10px #769aff55;
+}
+
+:root[data-theme="dark"] .play-icon {
+  color: #bdcdee;
+  border-color: #7488ad;
+}
+
+:root[data-theme="dark"] .hero-image-frame {
+  background: #101b2e;
+  border-color: #435773;
+  box-shadow:
+    0 20px 70px #02050f66,
+    0 0 0 7px #8faef90b;
+}
+
+:root[data-theme="dark"] .image-topline {
+  background: #142037;
+  color: #b5c4e0;
+  border-color: #34445e;
+}
+
+:root[data-theme="dark"] .image-topline i {
+  background: #a9bcff;
+  box-shadow: 0 0 0 3px #29436a;
+}
+
+:root[data-theme="dark"] .image-caption {
+  background: linear-gradient(transparent, #0b1220eb);
+  color: #eef3ff;
+}
+
+:root[data-theme="dark"] .image-caption > div {
+  background: #111c30f5;
+  border-color: #a1b6e64a;
+  box-shadow: 0 4px 20px #02050d33;
+}
+
+:root[data-theme="dark"] .caption-icon {
+  background: #26395a;
+  color: #b4c9ff;
+}
+
+:root[data-theme="dark"] .image-caption div div > span {
+  color: #bbc9e0;
+}
+
+:root[data-theme="dark"] .concept-label {
+  color: #e0eaff;
+  text-shadow: 0 1px 3px #08111d;
+}
+
+:root[data-theme="dark"]
+  :is(.research-strip > span, .research-strip strong, .research-strip > div) {
+  color: #a8b8d1;
+}
+
+:root[data-theme="dark"] .research-strip svg {
+  color: #92ade4;
+}
+
+/* Capabilities: dark glass panels and blue technical sketches. */
+:root[data-theme="dark"] .value-card {
+  background: var(--surface);
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .value-card:hover {
+  border-color: #455b83;
+  box-shadow: 0 18px 45px #00000033;
+}
+
+:root[data-theme="dark"] .value-visual {
+  background:
+    radial-gradient(ellipse at center, #3c438438, transparent 75%), #111c30;
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .value-detail {
+  border-color: var(--line);
+  color: #a9bad7;
+}
+
+:root[data-theme="dark"] .value-detail svg {
+  color: #a8baff;
+}
+
+:root[data-theme="dark"] .design-window {
+  background: #15233aeb;
+  border-color: #3d5378;
+  box-shadow: 0 14px 24px #00000026;
+}
+
+:root[data-theme="dark"] .mini-window-bar {
+  border-color: #314564;
+}
+
+:root[data-theme="dark"] .mini-window-bar > span {
+  background: #6a80a9;
+}
+
+:root[data-theme="dark"]
+  :is(.mini-window-bar > b, .mini-status, .layer-label, .iteration-note) {
+  color: #aabddb;
+}
+
+:root[data-theme="dark"] .mini-status i {
+  background: #9ab7ff;
+}
+
+:root[data-theme="dark"] .design-paths path:first-child {
+  stroke: #2c4574;
+}
+
+:root[data-theme="dark"] .design-paths path:last-child {
+  stroke: #9ab8ff;
+}
+
+:root[data-theme="dark"] .chip-layer {
+  border-color: #778bd4;
+  background: #283c6db8;
+  box-shadow: 2px 6px 0 #101e3abb;
+}
+
+:root[data-theme="dark"] .chip-layer span {
+  border-color: #b3baff;
+  box-shadow:
+    inset 0 0 0 9px #2c3e68,
+    inset 0 0 0 11px #879de2;
+}
+
+:root[data-theme="dark"] .layer-one {
+  background: #344975eb;
+}
+
+:root[data-theme="dark"] .layer-two {
+  background: #293969cf;
+}
+
+:root[data-theme="dark"] .layer-three {
+  background: #1d365ebf;
+}
+
+:root[data-theme="dark"] .iteration-v {
+  background: #18263e;
+  border-color: #3f5479;
+  box-shadow: 0 8px 16px #0000001f;
+}
+
+:root[data-theme="dark"] .v1 {
+  color: #a4b5d5;
+}
+
+:root[data-theme="dark"] .v2 {
+  color: #b9c7ff;
+  background: #26345b;
+  border-color: #758ac4;
+}
+
+:root[data-theme="dark"] .v2 > i {
+  background: #4864c9;
+  border-color: #152137;
+}
+
+:root[data-theme="dark"] .iteration-arrow {
+  color: #9dadde;
+}
+
+/* Workflow and application panels. */
+:root[data-theme="dark"] .process-section {
+  background:
+    radial-gradient(ellipse at 50% 0, #27316133, transparent 65%), #0e1829;
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .step-top {
+  border-color: #425b80;
+  color: #a1b9f0;
+}
+
+:root[data-theme="dark"] .step-top::before {
+  background: #15233b;
+  border-color: #a0b4e5;
+}
+
+:root[data-theme="dark"]
+  :is(.step-top > span, .step-note, .process-bottom > span) {
+  color: #aabbd7;
+}
+
+:root[data-theme="dark"] .process-bottom {
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] .process-bottom > span svg {
+  color: #a4bfff;
+}
+
+:root[data-theme="dark"] .application-tab strong {
+  color: #d4dff2;
+}
+
+:root[data-theme="dark"] .application-tab small {
+  color: #aabbd5;
+}
+
+:root[data-theme="dark"] :is(.app-tab-icon, .application-tab > svg) {
+  color: #9eb4dc;
+}
+
+:root[data-theme="dark"] .app-tab-icon {
+  background: #152138;
+  border-color: #30425e;
+}
+
+:root[data-theme="dark"] .application-tab:hover {
+  background: #142139;
+}
+
+:root[data-theme="dark"] .application-tab.active {
+  background: #1c2f51;
+  border-color: #486493;
+}
+
+:root[data-theme="dark"] .application-tab.active .app-tab-icon {
+  background: #2a4169;
+  border-color: #5c79af;
+  color: #ccdaff;
+  box-shadow: none;
+}
+
+:root[data-theme="dark"]
+  :is(.application-tab.active strong, .application-tab.active > svg) {
+  color: #cad8ff;
+}
+
+:root[data-theme="dark"] .application-panel {
+  background: #111e33;
+  border-color: #344862;
+}
+
+:root[data-theme="dark"] :is(.diagram-header, .diagram-header > span + span) {
+  color: #b2c3df;
+}
+
+:root[data-theme="dark"] .chip-diagram > defs > pattern > circle {
+  fill: #7288ab;
+  opacity: 0.38;
+}
+
+:root[data-theme="dark"] .application-tags > span {
+  background: #1b2a43;
+  border-color: #3b506f;
+  color: #bacce8;
+}
+
+:root[data-theme="dark"] .diagram-disclaimer {
+  background: #0e182b;
+  border-color: #2d405d;
+  color: #a8bad6;
+}
+
+/* Lab photography retains its original colors in a dark gallery surround. */
+:root[data-theme="dark"] .lab-section {
+  background: #101a2b;
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"]
+  body
+  .lab-section
+  :is(.lab-origin, .lab-story p, .lab-bottom p, .lab-bottom p > span) {
+  color: #afbdd4;
+}
+
+:root[data-theme="dark"] .lab-section .lab-origin > span {
+  background: #9fb8ff;
+  box-shadow: 0 0 0 4px #273c63;
+}
+
+:root[data-theme="dark"] .lab-photo {
+  background: #162238;
+  border-color: #35465f;
+}
+
+:root[data-theme="dark"] .lab-section .lab-photo figcaption {
+  color: #d9e3f5;
+}
+
+:root[data-theme="dark"] .photo-number {
+  color: #a8bad9;
+}
+
+:root[data-theme="dark"] .photo-expand {
+  color: #fff;
+  background: #101b30e8;
+  border-color: #a8bee777;
+}
+
+:root[data-theme="dark"] .photo-label {
+  color: #edf2ff;
+  background: #101b30f2;
+  border-color: #a8bee777;
+}
+
+:root[data-theme="dark"] .lab-viewer {
+  color: var(--ink);
+  background: #101a2b;
+  border-color: #526787;
+  box-shadow: 0 30px 100px #00000080;
+}
+
+:root[data-theme="dark"] .lab-viewer::backdrop {
+  background: #020611e8;
+}
+
+:root[data-theme="dark"] .viewer-top {
+  border-color: #35455f;
+}
+
+:root[data-theme="dark"]
+  .lab-viewer
+  :is(.viewer-top > span, .viewer-counter, .viewer-bottom p) {
+  color: #bdcce3;
+}
+
+:root[data-theme="dark"] .lab-viewer .viewer-bottom h3 {
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .viewer-image-frame {
+  background: #070d18;
+}
+
+:root[data-theme="dark"]
+  .lab-viewer
+  :is(.viewer-close, .viewer-navigation button) {
+  color: #eef3ff;
+  background: #22324c;
+  border-color: #647b9e;
+}
+
+:root[data-theme="dark"]
+  .lab-viewer
+  :is(.viewer-close:hover, .viewer-navigation button:hover) {
+  background: #35496c;
+}
+
+/* Closing sections and utility pages. */
+:root[data-theme="dark"] .mission-section {
+  background:
+    radial-gradient(ellipse at 40% 100%, #3933622e, transparent 70%), #10182a;
+  border-color: var(--line);
+}
+
+:root[data-theme="dark"] :is(.mission-inner .eyebrow, .mission-note) {
+  color: #a9bad8;
+}
+
+:root[data-theme="dark"] .mission-inner > p {
+  color: #d4dff2;
+}
+
+:root[data-theme="dark"] .mission-inner > p > span {
+  color: #a6b5d5;
+}
+
+:root[data-theme="dark"] .mission-line {
+  color: #a1baff;
+}
+
+:root[data-theme="dark"] .mission-line > span {
+  background: linear-gradient(90deg, transparent, #647fae);
+}
+
+:root[data-theme="dark"] .faq-number {
+  color: #a5b7d2;
+}
+
+:root[data-theme="dark"] .faq-item summary > svg {
+  color: #b2c3e8;
+}
+
+:root[data-theme="dark"] .cta-card {
+  background: linear-gradient(115deg, #233c8e 0%, #2d448f 55%, #3c4f8f 100%);
+  border-color: #6885db88;
+  box-shadow:
+    0 20px 65px #03091426,
+    inset 0 1px 0 #b5c7ff14;
+  color: #fff;
+}
+
+:root[data-theme="dark"]
+  :is(.cta-copy .eyebrow, .cta-copy > p, .cta-chip > span) {
+  color: #dae5ff;
+}
+
+:root[data-theme="dark"] .cta-copy h2 > span {
+  color: #cbd8ff;
+}
+
+:root[data-theme="dark"] .cta-orbits > span {
+  border-color: #b5caff24;
+}
+
+:root[data-theme="dark"] .site-footer {
+  background: #080e1a;
+  border-color: #27354a;
+}
+
+:root[data-theme="dark"]
+  :is(
+    .footer-main p,
+    .footer-label,
+    .footer-links > a,
+    .footer-links > .text-button,
+    .footer-bottom
+  ) {
+  color: #a9b9d3;
+}
+
+:root[data-theme="dark"]
+  :is(
+    .footer-links > a:hover,
+    .footer-links > .text-button:hover,
+    .footer-bottom a:hover
+  ) {
+  color: #d2dfff;
+}
+
+:root[data-theme="dark"] .footer-bottom {
+  border-color: #27354a;
+}
+
+:root[data-theme="dark"] :is(.legal-page, .not-found) {
+  color: var(--ink);
+}
+
+:root[data-theme="dark"] .legal-page p a {
+  color: #b4c8ff;
+}
+
+/* Inquiry form: the root selector wins over component-scoped styles. */
+:root[data-theme="dark"] .project-dialog {
+  color: var(--ink);
+  background: #111b2e;
+  border-color: #445879;
+  box-shadow: 0 32px 100px #00000080;
+}
+
+:root[data-theme="dark"] .project-dialog::backdrop {
+  background: #020611c7;
+}
+
+:root[data-theme="dark"] .dialog-close {
+  color: #d5e1f7;
+  background: #25354e;
+}
+
+:root[data-theme="dark"] .dialog-close:hover {
+  color: #fff;
+  background: #354968;
+}
+
+:root[data-theme="dark"] .dialog-eyebrow {
+  color: #b9b6ff;
+}
+
+:root[data-theme="dark"] .project-dialog .dialog-heading h2 {
+  color: var(--ink);
+}
+
+:root[data-theme="dark"]
+  :is(
+    .dialog-heading p,
+    .project-dialog .optional,
+    .field-hint,
+    .submission-note,
+    .dialog-contact
+  ) {
+  color: #b2bfd6;
+}
+
+:root[data-theme="dark"] .project-dialog label {
+  color: #dce6f9;
+}
+
+:root[data-theme="dark"] .project-dialog label > span:not(.optional) {
+  color: #c0b9ff;
+}
+
+:root[data-theme="dark"] .project-dialog :is(input, select, textarea) {
+  color: #edf3ff;
+  background: #0c1526;
+  border-color: #607493;
+  color-scheme: dark;
+}
+
+:root[data-theme="dark"] .project-dialog :is(input, textarea)::placeholder {
+  color: #a6b5ce;
+  opacity: 1;
+}
+
+:root[data-theme="dark"] .project-dialog :is(input, select, textarea):focus {
+  border-color: #a6baff;
+  box-shadow: 0 0 0 3px #8aa6ff30;
+}
+
+:root[data-theme="dark"] .project-dialog input:autofill {
+  -webkit-text-fill-color: #edf3ff;
+  box-shadow: 0 0 0 1000px #18283e inset;
+}
+
+:root[data-theme="dark"] .inquiry-submit {
+  color: #fff;
+  background: #4864df;
+  border-color: #8fa5ff77;
+}
+
+:root[data-theme="dark"] .inquiry-submit:hover {
+  background: #3e56c8;
+}
+
+:root[data-theme="dark"] .brief-download {
+  color: #becdf4;
+}
+
+:root[data-theme="dark"] .brief-download:hover {
+  color: #e2eaff;
+}
+
+:root[data-theme="dark"] .inquiry-status {
+  color: #c6d9f7;
+  background: #1a2c46;
+  border-color: #46658e;
+}
+
+:root[data-theme="dark"] .dialog-contact {
+  border-color: #33445f;
+}
+
+:root[data-theme="dark"] .project-dialog .dialog-contact a,
+:root[data-theme="dark"] .no-script-contact a {
+  color: #c2c8ff;
+}
+
+:root[data-theme="dark"] .no-script-contact {
+  color: #b9c9e2;
+  background: #152339;
+}
+
+@media (max-width: 600px) {
+  :root[data-theme="dark"] .hero-image-frame {
+    box-shadow:
+      0 12px 35px #02050f55,
+      0 0 0 4px #8faef90b;
+  }
+}

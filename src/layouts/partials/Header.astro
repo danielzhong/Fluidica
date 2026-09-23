@@ -1,6 +1,7 @@
 ---
 import Logo from "../components/Logo.astro";
 import Icon from "../components/Icon.astro";
+import ThemeToggle from "../components/ThemeToggle.astro";
 import { withBase } from "../../lib/paths";
 const links = [
   { label: "Technology", href: withBase("/#technology") },
@@ -18,21 +19,24 @@ const links = [
         <a href={link.href}>{link.label}</a>
       ))}
     </nav>
-    <button
-      class="button button-small button-dark header-cta"
-      data-project-trigger
-    >
-      Start a project <Icon name="diagonal" size={17} />
-    </button>
-    <button
-      class="menu-toggle"
-      aria-label="Open navigation"
-      aria-expanded="false"
-      aria-controls="mobile-nav"
-    >
-      <span></span>
-      <span></span>
-    </button>
+    <div class="header-actions">
+      <button
+        class="button button-small button-dark header-cta"
+        data-project-trigger
+      >
+        Start a project <Icon name="diagonal" size={17} />
+      </button>
+      <ThemeToggle />
+      <button
+        class="menu-toggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
   <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
     {links.map((link) => (
@@ -43,6 +47,18 @@ const links = [
     </button>
   </nav>
 </header>
+<style>
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  @media (max-width: 600px) {
+    .header-actions {
+      gap: 8px;
+    }
+  }
+</style>
 <script>
   const toggle = document.querySelector<HTMLButtonElement>(".menu-toggle");
   const navigation = document.querySelector<HTMLElement>("#mobile-nav");

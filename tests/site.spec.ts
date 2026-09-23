@@ -8,7 +8,7 @@ test("home, image and links render without overflow or runtime errors", async ({
   const errors: string[] = [];
   page.on("pageerror", (error) => errors.push(error.message));
   await page.goto("./");
-  await expect(page).toHaveTitle(/Fluidica — AI-designed microfluidics/);
+  await expect(page).toHaveTitle(/Fluid Fabs — AI-designed microfluidics/);
   await expect(page.locator("h1")).toHaveText(
     /Your next big idea\.\s*On a very small chip\./,
   );
@@ -88,7 +88,7 @@ test("inquiry validates, downloads an accurate brief and restores focus", async 
   const downloadEvent = page.waitForEvent("download");
   await dialog.getByRole("button", { name: "Download brief" }).click();
   const download = await downloadEvent;
-  expect(download.suggestedFilename()).toBe("fluidica-project-brief.txt");
+  expect(download.suggestedFilename()).toBe("fluid-fabs-project-brief.txt");
   const text = await readFile((await download.path())!, "utf8");
   expect(text).toContain("Name: Test Researcher");
   expect(text).toContain("Application: Droplet generation");
@@ -190,7 +190,7 @@ test("deployment base keeps navigation, assets and sharing URLs intact", async (
   await page.getByRole("link", { name: "Privacy", exact: true }).click();
   expect(new URL(page.url()).pathname).toBe(`${deploymentPath}privacy/`);
   await expect(
-    page.getByRole("link", { name: "← Back to Fluidica" }),
+    page.getByRole("link", { name: "← Back to Fluid Fabs" }),
   ).toHaveAttribute("href", deploymentPath);
   if (process.env.SITE_URL) {
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
@@ -201,6 +201,6 @@ test("deployment base keeps navigation, assets and sharing URLs intact", async (
 
   await page.goto("404.html");
   await expect(page.locator("h1")).toContainText("Let’s get back");
-  await page.getByRole("link", { name: "Back to Fluidica →" }).click();
+  await page.getByRole("link", { name: "Back to Fluid Fabs →" }).click();
   expect(new URL(page.url()).pathname).toBe(deploymentPath);
 });

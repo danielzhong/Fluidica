@@ -27,6 +27,9 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
 }
+body:focus {
+  outline: none;
+}
 button,
 input,
 select,
@@ -206,7 +209,7 @@ p {
 .skip-link:focus {
   top: 10px;
 }
-/* Automark's navigation and centered hero, reworked for Fluidica. */
+/* Automark's navigation and centered hero, reworked for Fluid Fabs. */
 .site-header {
   height: 88px;
   position: relative;

@@ -1,5 +1,6 @@
 ---
 import { withBase } from "../../lib/paths";
+import { site } from "../../config/site";
 interface Props {
   light?: boolean;
 }
@@ -9,7 +10,7 @@ const { light = false } = Astro.props;
 <a
   href={withBase("/")}
   class:list={["brand", { "brand-light": light }]}
-  aria-label="Fluidica home"
+  aria-label={`${site.name} home`}
 >
   <svg
     width="34"
@@ -30,7 +31,5 @@ const { light = false } = Astro.props;
       stroke-linecap="round"
     />
   </svg>
-  <span>
-    fluidica<span class="brand-period">.</span>
-  </span>
+  <span>{site.name}</span>
 </a>

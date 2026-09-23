@@ -1,8 +1,8 @@
 {
-  "name": "fluidica",
+  "name": "fluid-fabs",
   "version": "1.0.0",
   "private": true,
-  "description": "Fluidica — AI-designed microfluidics, manufactured on demand. Based on Automark Astro by Themefisher.",
+  "description": "Fluid Fabs — AI-designed microfluidics, manufactured on demand. Based on Automark Astro by Themefisher.",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"
