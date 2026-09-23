@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { waitForMotion } from "./helpers";
 
 test("dark is the default even when the device prefers light; theme persists across pages", async ({
   page,
@@ -69,10 +70,12 @@ test("light mode retains accessible page and inquiry colors", async ({
 }) => {
   await page.goto("./");
   await page.getByRole("button", { name: "Switch to light mode" }).click();
-  const scan = () =>
-    new AxeBuilder({ page })
+  const scan = async () => {
+    await waitForMotion(page);
+    return new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();
+  };
   expect((await scan()).violations).toEqual([]);
   await page.locator(".hero-actions [data-project-trigger]").click();
   expect((await scan()).violations).toEqual([]);

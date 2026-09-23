@@ -1,0 +1,51 @@
+---
+const streams = [
+  "M-120 310C80 310 65 110 250 110S370 265 550 265 715 190 900 190 1120 85 1310 85 1430 235 1720 235",
+  "M-120 345C80 345 65 145 250 145S370 300 550 300 715 225 900 225 1120 120 1310 120 1430 270 1720 270",
+  "M-120 380C80 380 65 180 250 180S370 335 550 335 715 260 900 260 1120 155 1310 155 1430 305 1720 305",
+];
+---
+
+<svg
+  class="hero-streams"
+  viewBox="0 0 1600 520"
+  fill="none"
+  preserveAspectRatio="xMidYMid slice"
+  aria-hidden="true"
+  focusable="false"
+>
+  <defs>
+    <linearGradient
+      id="hero-stream-color"
+      x1="0"
+      y1="0"
+      x2="1600"
+      y2="0"
+      gradientUnits="userSpaceOnUse"
+    >
+      <stop stop-color="#69baff" stop-opacity="0" />
+      <stop offset=".16" stop-color="#69baff" />
+      <stop offset=".45" stop-color="#91a9ff" stop-opacity=".12" />
+      <stop offset=".65" stop-color="#aaa0ff" stop-opacity=".2" />
+      <stop offset=".85" stop-color="#b7a0ff" />
+      <stop offset="1" stop-color="#b7a0ff" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  {streams.map((d, index) => (
+    <g style={`--stream-delay: ${index * 160}ms`}>
+      <path
+        d={d}
+        stroke="url(#hero-stream-color)"
+        stroke-width="1"
+        class="stream-track"
+      />
+      <path
+        d={d}
+        stroke="url(#hero-stream-color)"
+        stroke-width="2"
+        pathLength="1"
+        class="stream-tracer"
+      />
+    </g>
+  ))}
+</svg>

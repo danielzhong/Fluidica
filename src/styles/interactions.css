@@ -1,0 +1,219 @@
+/* Small, deliberate responses to interaction; no continuously running effects. */
+:root {
+  --interaction-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --interaction-edge: #90a8e6;
+  --interaction-shadow: #263e711a;
+  --interaction-glow: #7998ef12;
+}
+
+:root[data-theme="dark"] {
+  --interaction-edge: #6884bd;
+  --interaction-shadow: #02060f66;
+  --interaction-glow: #7b9cff16;
+}
+
+/* The technical illustration rests until the visitor engages with its panel. */
+:root .application-panel .diagram-board {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  :root[data-theme] :is(.button, .project-dialog .inquiry-submit) {
+    transition:
+      transform 320ms var(--interaction-ease),
+      background 240ms ease,
+      border-color 240ms ease,
+      box-shadow 320ms ease;
+  }
+
+  :root[data-theme] .button:is(:hover, :focus-visible) {
+    transform: translateY(-2px);
+  }
+
+  :root[data-theme] .button:active {
+    transform: translateY(0) scale(0.985);
+  }
+
+  :root[data-theme]
+    :is(.button > svg, .text-button > svg, .inquiry-submit > svg) {
+    transition: translate 350ms var(--interaction-ease);
+  }
+
+  :root[data-theme]
+    :is(.button, .text-button, .inquiry-submit):is(:hover, :focus-visible)
+    > svg {
+    translate: 3px 0;
+  }
+
+  :root[data-theme] .desktop-nav a {
+    position: relative;
+  }
+
+  :root[data-theme] .desktop-nav a::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 350ms var(--interaction-ease);
+    pointer-events: none;
+  }
+
+  :root[data-theme] .desktop-nav a:is(:hover, :focus-visible)::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  :root[data-theme] .value-card,
+  :root[data-theme] .lab-section .lab-photo {
+    transition:
+      transform 460ms var(--interaction-ease),
+      translate 460ms var(--interaction-ease),
+      border-color 320ms ease,
+      box-shadow 460ms ease;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within),
+  :root[data-theme] .lab-section .lab-photo:is(:hover, :focus-within) {
+    border-color: var(--interaction-edge);
+    box-shadow:
+      0 18px 40px var(--interaction-shadow),
+      0 0 30px var(--interaction-glow);
+  }
+
+  :root[data-theme] .lab-section .lab-photo:is(:hover, :focus-within) {
+    translate: 0 -4px;
+  }
+
+  :root[data-theme] .lab-section .lab-gallery .lab-photo img {
+    transition: transform 700ms var(--interaction-ease);
+  }
+
+  :root[data-theme]
+    .lab-section
+    .lab-gallery
+    .lab-photo
+    > a:is(:hover, :focus-visible)
+    img {
+    transform: scale(1.018);
+  }
+
+  :root[data-theme] .lab-section .photo-expand {
+    transition: translate 360ms var(--interaction-ease);
+  }
+
+  :root[data-theme]
+    .lab-section
+    .lab-photo
+    > a:is(:hover, :focus-visible)
+    .photo-expand {
+    translate: 1px -1px;
+  }
+
+  /* Individual transforms preserve the original perspective and tilted chips. */
+  :root[data-theme]
+    :is(
+      .chip-layer,
+      .design-window,
+      .iteration-v,
+      .iteration-arrow,
+      .cta-chip
+    ) {
+    transition:
+      translate 600ms var(--interaction-ease),
+      rotate 600ms var(--interaction-ease);
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .layer-one {
+    translate: 0 -7px;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .layer-three {
+    translate: 0 7px;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .design-window {
+    translate: 0 -2px;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .v1 {
+    translate: -3px 1px;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .v2 {
+    translate: 3px -3px;
+    rotate: -2deg;
+  }
+
+  :root[data-theme] .value-card:is(:hover, :focus-within) .iteration-arrow {
+    translate: 1px -2px;
+  }
+
+  :root[data-theme]
+    .value-card:is(:hover, :focus-within)
+    .design-paths
+    path:last-child {
+    animation: channel-flow 900ms linear 2;
+  }
+
+  :root[data-theme] .application-panel:is(:hover, :focus-within) .flow-path {
+    animation:
+      channel-fill 1.8s cubic-bezier(0.4, 0, 0.2, 1) both,
+      channel-pulse 900ms linear 2;
+  }
+
+  :root[data-theme] .application-tab {
+    transition:
+      translate 350ms var(--interaction-ease),
+      background 280ms ease,
+      border-color 280ms ease;
+  }
+
+  :root[data-theme] .application-tab:is(:hover, :focus-visible) {
+    translate: 2px 0;
+    border-color: var(--interaction-edge);
+  }
+
+  :root[data-theme] .cta-card:is(:hover, :focus-within) .cta-chip {
+    translate: 0 -5px;
+    rotate: 2deg;
+  }
+
+  @keyframes channel-flow {
+    from {
+      stroke-dasharray: 14 6;
+      stroke-dashoffset: 40;
+    }
+    to {
+      stroke-dasharray: 14 6;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes channel-pulse {
+    from {
+      stroke-dasharray: 0.04 0.02;
+      stroke-dashoffset: 0.24;
+    }
+    to {
+      stroke-dasharray: 0.04 0.02;
+      stroke-dashoffset: 0;
+    }
+  }
+}
+
+/* Reset earlier hover movement too, without removing the illustrations' tilts. */
+@media (prefers-reduced-motion: reduce), (hover: none), (pointer: coarse) {
+  :root[data-theme] :is(.button, .value-card, .back-to-top):hover,
+  :root[data-theme] .project-dialog .inquiry-submit:hover {
+    transform: none;
+  }
+
+  :root[data-theme] .lab-section .lab-gallery .lab-photo > a:hover img {
+    transform: none;
+  }
+}

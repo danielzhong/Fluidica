@@ -1,6 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { readFile } from "node:fs/promises";
+import { waitForMotion } from "./helpers";
 
 test("home, image and links render without overflow or runtime errors", async ({
   page,
@@ -128,10 +129,12 @@ test("page and project dialog meet automated accessibility checks", async ({
   page,
 }) => {
   await page.goto("./");
-  const scan = () =>
-    new AxeBuilder({ page })
+  const scan = async () => {
+    await waitForMotion(page);
+    return new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();
+  };
   expect((await scan()).violations).toEqual([]);
   await page.locator(".hero-actions [data-project-trigger]").click();
   expect((await scan()).violations).toEqual([]);

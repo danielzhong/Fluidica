@@ -7,6 +7,7 @@ import ProcessCard from "../layouts/components/ProcessCard.astro";
 import ChipDiagram from "../layouts/components/ChipDiagram.astro";
 import Faq from "../layouts/components/Faq.astro";
 import LabGallery from "../layouts/components/LabGallery.astro";
+import FlowField from "../layouts/components/FlowField.astro";
 import { withBase } from "../lib/paths";
 import { site } from "../config/site";
 import { benefits, steps, applications } from "../content/homepage/content";
@@ -15,6 +16,7 @@ import { benefits, steps, applications } from "../content/homepage/content";
 <Base>
   <section class="hero">
     <div class="hero-halo" aria-hidden="true"></div>
+    <FlowField />
     <div class="container hero-content">
       <Badge title="3D printing. Lower prices. More possibilities." />
       <h1>

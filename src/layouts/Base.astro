@@ -3,10 +3,13 @@ import "@fontsource-variable/inter";
 import "@fontsource-variable/manrope";
 import "../styles/main.css";
 import "../styles/dark.css";
+import "../styles/motion.css";
+import "../styles/interactions.css";
 import Header from "./partials/Header.astro";
 import Footer from "./partials/Footer.astro";
 import ProjectDialog from "./components/ProjectDialog.astro";
 import BackToTop from "./components/BackToTop.astro";
+import Motion from "./components/Motion.astro";
 import { site } from "../config/site";
 import { withBase } from "../lib/paths";
 interface Props {
@@ -72,5 +75,6 @@ const shareImageURL = Astro.site
     <Footer />
     <ProjectDialog />
     <BackToTop />
+    <Motion />
   </body>
 </html>

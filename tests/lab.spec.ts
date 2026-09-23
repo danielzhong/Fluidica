@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { waitForMotion } from "./helpers";
 
 test("lab photos load, open at full size and support keyboard browsing", async ({
   page,
@@ -51,6 +52,7 @@ test("lab photos load, open at full size and support keyboard browsing", async (
       .locator("#lab-viewer")
       .evaluate((el) => el.scrollWidth <= el.clientWidth),
   ).toBe(true);
+  await waitForMotion(page);
   expect(
     (
       await new AxeBuilder({ page })
